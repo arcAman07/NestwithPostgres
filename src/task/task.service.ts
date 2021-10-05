@@ -39,4 +39,12 @@ export class TaskService {
       }
     }
   }
+  patchTaskById(id: string, status: string, statusBody: TaskStatus): Task {
+    for (let i = 0; i < this.tasks.length; i++) {
+      if (this.tasks[i].id === id) {
+        this.tasks[i].status = statusBody;
+        return this.tasks[i];
+      }
+    }
+  }
 }
