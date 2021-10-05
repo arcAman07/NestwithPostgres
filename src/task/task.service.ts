@@ -3,6 +3,7 @@ import { Task } from './task.model';
 import { TaskStatus } from './task.model';
 import { v4 as uuidv4 } from 'uuid';
 import { CreateTaskDto } from './dto/create-task.dto';
+import { GetTaskFilter } from './dto/get-task-filter.dto';
 @Injectable()
 export class TaskService {
   private tasks: Task[] = [];
@@ -46,5 +47,32 @@ export class TaskService {
         return this.tasks[i];
       }
     }
+  }
+  getTasksWithFilters(filterDto: GetTaskFilter): Task[] {
+    const { status, search } = filterDto;
+    // define a temporary array to hold the result
+    let tasks: Task[] = this.getAllTasks();
+
+    // do something with status
+    if (status) {
+      tasks = tasks.filter((task) => task.status === status);
+    }
+
+    // do something with search
+    if (search) {
+      tasks = tasks.filter(
+        (task) => task.title === search || task.description === search,
+      );
+    }
+    // do something with both search and status when they are present
+    if (search && status) {
+      tasks = tasks.filter(
+        (task) =>
+          (task.status === status && task.title === search) ||
+          task.description === search,
+      );
+    }
+    // return result
+    return tasks;
   }
 }
