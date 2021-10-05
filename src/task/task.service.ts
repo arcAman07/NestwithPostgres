@@ -31,4 +31,12 @@ export class TaskService {
       }
     }
   }
+  deleteTaskById(id: string): string {
+    for (let i = 0; i < this.tasks.length; i++) {
+      if (this.tasks[i].id === id) {
+        this.tasks.splice(i, 1);
+        return 'Successfully deleted the task';
+      }
+    }
+  }
 }
