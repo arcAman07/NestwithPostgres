@@ -19,7 +19,16 @@ export class TaskService {
       description: description,
       status: TaskStatus.OPEN,
     };
-    return task;
     this.tasks.push(task);
+    return task;
+  }
+
+  getTaskById(id: string): Task {
+    for (let i = 0; i < this.tasks.length; i++) {
+      // we can also use this.tasks.find((task: Task) => task.id === id) to do this rather than looping through  the array;
+      if (this.tasks[i].id === id) {
+        return this.tasks[i];
+      }
+    }
   }
 }
