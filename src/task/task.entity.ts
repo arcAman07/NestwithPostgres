@@ -7,9 +7,14 @@ export class Task {
   id: string;
 
   @Column()
+
   title: string;
+
   @Column()
+
   description: string;
+
   @Column()
-  stattus:TaskStatus;
+  
+  status: TaskStatus;
 }

@@ -14,17 +14,17 @@ export class TaskService {
   // getAllTasks(): Task[] {
   //   return this.tasks;
   // }
-  // createTask(createTaskDto: CreateTaskDto): Task {
-  //   const { title, description } = createTaskDto;
-  //   const task: Task = {
-  //     id: uuidv4(),
-  //     title: title,
-  //     description: description,
-  //     status: TaskStatus.OPEN,
-  //   };
-  //   this.tasks.push(task);
-  //   return task;
-  // }
+  async createTask(createTaskDto: CreateTaskDto): Promise<Task> {
+    // const { title, description } = createTaskDto;
+    // const task = this.taskRepository.create({
+    //   title,
+    //   description,
+    //   status: TaskStatus.OPEN,
+    // });
+    // await this.taskRepository.save(task);
+    // return task;
+    return this.taskRepository.createTask(createTaskDto);
+  }
 
   async getTaskById(taskId: string): Promise<Task> {
     const found = await this.taskRepository.findOne(taskId);

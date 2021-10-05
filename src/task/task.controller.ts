@@ -29,10 +29,10 @@ export class TaskController {
   //     return this.taskService.getAllTasks();
   //   }
   // }
-  // @Post()
-  // createTask(@Body() createTaskDto: CreateTaskDto): Task {
-  //   return this.taskService.createTask(createTaskDto);
-  // }
+  @Post()
+  createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
+    return this.taskService.createTask(createTaskDto);
+  }
   @Get(':id')
   getTaskById(@Param('id') id: string): Promise<Task> {
     return this.taskService.getTaskById(id);
