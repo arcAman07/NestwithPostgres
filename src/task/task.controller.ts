@@ -7,6 +7,7 @@ import {
   Delete,
   Patch,
   Query,
+  NotFoundException,
 } from '@nestjs/common';
 import { Task, TaskStatus } from './task.model';
 import { TaskService } from './task.service';
@@ -33,7 +34,12 @@ export class TaskController {
   }
   @Get(':id')
   getTaskById(@Param('id') id: string): Task {
-    return this.taskService.getTaskById(id);
+    const found = this.taskService.getTaskById(id);
+    if (!found) {
+      throw new NotFoundException();
+    } else {
+      return found;
+    }
   }
   @Delete(':id')
   deleteTaskById(@Param('id') id: string): string {
