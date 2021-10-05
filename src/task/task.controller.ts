@@ -51,6 +51,11 @@ export class TaskController {
     @Param('status') status: string,
     @Body('statusBody') statusBody: TaskStatus,
   ): Task {
-    return this.taskService.patchTaskById(id, status, statusBody);
+    const found = this.taskService.patchTaskById(id, status, statusBody);
+    if (!found) {
+      throw new NotFoundException();
+    } else {
+      return found;
+    }
   }
 }
