@@ -29,6 +29,12 @@ export class TaskController {
   //     return this.taskService.getAllTasks();
   //   }
   // }
+
+  @Get()
+  getAllTasks(): Promise<Task[]> {
+    return this.taskService.getAllTasks();
+  }
+
   @Post()
   createTask(@Body() createTaskDto: CreateTaskDto): Promise<Task> {
     return this.taskService.createTask(createTaskDto);

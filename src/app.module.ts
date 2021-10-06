@@ -10,7 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       port: 5432,
       username: 'postgres',
       password: 'postgres',
-      database: 'task-manage',
+      database: 'postgres',
       autoLoadEntities: true,
       synchronize: true,
     }),
