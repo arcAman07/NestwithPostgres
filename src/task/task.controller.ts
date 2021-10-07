@@ -8,14 +8,17 @@ import {
   Patch,
   Query,
   NotFoundException,
+  UseGuards,
 } from '@nestjs/common';
 import { TaskStatus } from './task-status.enum';
 import { TaskService } from './task.service';
 import { CreateTaskDto } from './dto/create-task.dto';
 import { GetTaskFilter } from './dto/get-task-filter.dto';
 import { Task } from './task.entity';
+import { AuthGuard } from '@nestjs/passport';
 
 @Controller('task')
+@UseGuards(AuthGuard())
 export class TaskController {
   constructor(private taskService: TaskService) {}
 
