@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { registerUser } from './dto/create-user.dto';
 import { UserRepository } from './user.repository';
@@ -17,7 +17,7 @@ export class AuthService {
     if (foundUser && (await bcrypt.compareSync(password, foundUser.password))) {
       return 'User signed in';
     } else {
-      return 'Incorrect username or password';
+      throw new UnauthorizedException('Enter a valid username and password');
     }
   }
 }
