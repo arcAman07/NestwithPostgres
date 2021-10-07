@@ -10,7 +10,7 @@ import { User} from './user.entity';
 export class jwtStrategy extends PassportStrategy(Strategy) {
     constructor(@InjectRepository(UserRepository) private userRepository:UserRepository) {
         super({
-            secretOrkey: 'topSecret21',
+            secretOrKey: 'topSecret21',
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
         })
     }
