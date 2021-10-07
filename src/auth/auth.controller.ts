@@ -9,4 +9,8 @@ export class AuthController {
   signUp(@Body() registerUserinfo: registerUser): Promise<void> {
     return this.authService.signUp(registerUserinfo);
   }
+  @Post('/signIn')
+  signIn(@Body() registerUserinfo: registerUser): Promise<string> {
+    return this.authService.signIn(registerUserinfo);
+  }
 }
