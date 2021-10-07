@@ -28,8 +28,8 @@ export class TaskService {
     }
   }
 
-  async deleteTaskById(taskId: string): Promise<string> {
-    const found = await this.taskRepository.findOne(taskId);
+  async deleteTaskById(taskId: string, user: User): Promise<string> {
+    const found = await this.taskRepository.findOne({ id: taskId, user });
     if (!found) {
       throw new NotFoundException();
     } else {
