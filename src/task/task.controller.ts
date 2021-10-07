@@ -47,8 +47,8 @@ export class TaskController {
     return this.taskService.createTask(createTaskDto, user);
   }
   @Get(':id')
-  getTaskById(@Param('id') id: string): Promise<Task> {
-    return this.taskService.getTaskById(id);
+  getTaskById(@Param('id') id: string, @GetUser() user: User): Promise<Task> {
+    return this.taskService.getTaskById(id, user);
   }
   @Delete(':id')
   deleteTaskById(@Param('id') id: string): Promise<string> {
