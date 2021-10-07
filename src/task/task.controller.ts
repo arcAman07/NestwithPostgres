@@ -35,8 +35,8 @@ export class TaskController {
   // }
 
   @Get()
-  getAllTasks(): Promise<Task[]> {
-    return this.taskService.getAllTasks();
+  getAllTasks(@GetUser() user: User): Promise<Task[]> {
+    return this.taskService.getAllTasks(user);
   }
 
   @Post()

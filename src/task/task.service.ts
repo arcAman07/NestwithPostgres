@@ -12,8 +12,8 @@ export class TaskService {
     @InjectRepository(TaskRepository)
     private taskRepository: TaskRepository,
   ) {}
-  async getAllTasks(): Promise<Task[]> {
-    return await this.taskRepository.find();
+  async getAllTasks(user: User): Promise<Task[]> {
+    return await this.taskRepository.find(user);
   }
   async createTask(createTaskDto: CreateTaskDto, user: User): Promise<Task> {
     return this.taskRepository.createTask(createTaskDto, user);
