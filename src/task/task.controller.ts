@@ -47,6 +47,7 @@ export class TaskController {
     @Body() createTaskDto: CreateTaskDto,
     @GetUser() user: User,
   ): Promise<Task> {
+    this.logger.log(`New User task created by "${user.username}""`);
     return this.taskService.createTask(createTaskDto, user);
   }
   @Get(':id')
